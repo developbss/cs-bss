@@ -1,0 +1,197 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-wa-green: #075e54;
+  --color-wa-teal: #128c7e;
+  --color-wa-light: #25d366;
+  --color-wa-dark: #111b21;
+  --color-wa-darker: #0b141a;
+  --color-wa-chat-bg: #0b141a;
+  --color-wa-input-bg: #1f2c34;
+  --color-wa-bubble-out: #005c4b;
+  --color-wa-bubble-in: #1f2c34;
+  --color-wa-header: #1f2c34;
+  --color-wa-border: #2a3942;
+  --color-wa-text: #e9edef;
+  --color-wa-text-secondary: #8696a0;
+  --color-wa-blue-check: #53bdeb;
+  --color-fb-blue: #1877f2;
+  --color-fb-light: #e7f3ff;
+  --color-fb-gray: #f0f2f5;
+  --color-fb-dark: #1c1e21;
+  --color-fb-border: #ced0d4;
+  --color-tg-bg: #0e1621;
+  --color-tg-sidebar: #17212b;
+  --color-tg-header: #17212b;
+  --color-tg-input: #242f3d;
+  --color-tg-selected: #2b5278;
+  --color-tg-hover: #202b36;
+  --color-tg-bubble-out: #2b5278;
+  --color-tg-bubble-in: #182533;
+  --color-tg-text: #f5f5f5;
+  --color-tg-text-secondary: #708499;
+  --color-tg-accent: #5eb5f7;
+  --color-tg-green: #4dcd5e;
+  --color-tg-border: #0e1621;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.12);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.22);
+}
+
+/* WhatsApp doodle wallpaper */
+.chat-wallpaper {
+  background-color: #0b141a;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23172028' fill-opacity='0.5'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Typing animation */
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-5px); opacity: 1; }
+}
+.typing-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #8696a0;
+}
+.typing-dot:nth-child(1) { animation: typingBounce 1.4s ease-in-out infinite 0s; }
+.typing-dot:nth-child(2) { animation: typingBounce 1.4s ease-in-out infinite 0.2s; }
+.typing-dot:nth-child(3) { animation: typingBounce 1.4s ease-in-out infinite 0.4s; }
+
+/* Facebook messenger typing (light) */
+.typing-dot-light {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #bcc0c4;
+}
+.typing-dot-light:nth-child(1) { animation: typingBounce 1.4s ease-in-out infinite 0s; }
+.typing-dot-light:nth-child(2) { animation: typingBounce 1.4s ease-in-out infinite 0.2s; }
+.typing-dot-light:nth-child(3) { animation: typingBounce 1.4s ease-in-out infinite 0.4s; }
+
+/* Telegram typing dots */
+.typing-dot-tg {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #708499;
+}
+.typing-dot-tg:nth-child(1) { animation: typingBounce 1.4s ease-in-out infinite 0s; }
+.typing-dot-tg:nth-child(2) { animation: typingBounce 1.4s ease-in-out infinite 0.2s; }
+.typing-dot-tg:nth-child(3) { animation: typingBounce 1.4s ease-in-out infinite 0.4s; }
+
+/* Message slide in */
+@keyframes msgSlideIn {
+  from { opacity: 0; transform: translateY(8px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.msg-animate {
+  animation: msgSlideIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Bubble tails - WhatsApp style (customer page) */
+.bubble-out {
+  position: relative;
+  border-top-right-radius: 0 !important;
+}
+.bubble-out::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -8px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid #005c4b;
+  border-bottom: 8px solid transparent;
+}
+.bubble-in {
+  position: relative;
+  border-top-left-radius: 0 !important;
+}
+.bubble-in::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -8px;
+  width: 0;
+  height: 0;
+  border-right: 8px solid rgba(31,44,52,0.95);
+  border-bottom: 8px solid transparent;
+}
+
+/* Bubble tails - Telegram style (admin page) */
+.tg-bubble-out {
+  position: relative;
+  border-top-right-radius: 0 !important;
+}
+.tg-bubble-out::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -8px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid #2b5278;
+  border-bottom: 8px solid transparent;
+}
+.tg-bubble-in {
+  position: relative;
+  border-top-left-radius: 0 !important;
+}
+.tg-bubble-in::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -8px;
+  width: 0;
+  height: 0;
+  border-right: 8px solid #182533;
+  border-bottom: 8px solid transparent;
+}
+
+/* Fade in */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+.fade-in {
+  animation: fadeIn 0.3s ease;
+}
+
+/* Admin pages - Telegram dark mode */
+.admin-layout {
+  background: #0e1621 !important;
+  color: #f5f5f5 !important;
+  overflow: hidden !important;
+  height: 100vh;
+}
+
+/* Smooth input focus */
+input:focus {
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
